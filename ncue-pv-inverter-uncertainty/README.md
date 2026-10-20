@@ -1,4 +1,4 @@
-# Uncertainty budget and field validation of a 139.5 kWp three-inverter rooftop PV plant (pvlib)
+# A pvlib-Based Computational Model of a Multi-Inverter Rooftop Photovoltaic Plant Driven by Public Weather Data: Sensitivity Analysis and Field Validation.
 
 Code and processed data for the CSME 2026 paper
 "From Datasheet to Field: An Uncertainty Budget and One-Minute AC Validation of a 139.5 kWp Three-Inverter Rooftop PV Plant"
