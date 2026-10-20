@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "Uncertainty budget and field validation of a 139.5 kWp three-inverter rooftop PV plant (pvlib)"
+authors:
+  - family-names: Govino
+    given-names: Cliff Nathanael
+  - family-names: Yang
+    given-names: Wen-Ren
+license: MIT
+repository-code: "https://github.com/cliff1221/ncue-pv-inverter-uncertainty"
+# Add doi: after the Zenodo release
