@@ -20,7 +20,7 @@ body = doc.element.body
 COLW = (11905 - 1134 - 1134 - 559) // 2          # twips, one column of the template
 MAXW_IN = 2.85
 # per-figure width (in): smaller for simple charts
-FIGW = {2: 2.7, 3: 2.85, 4: 2.85, 5: 2.6, 6: 2.85, 7: 2.4, 8: 2.55, 9: 2.4, 10: 2.35, 11: 2.6, 12: 2.6}
+FIGW = {2: 2.6, 3: 2.8, 4: 2.8, 5: 2.5, 6: 2.75, 7: 2.3, 8: 2.45, 9: 2.3, 10: 2.25, 11: 2.5, 12: 2.5}
 
 COLOR = '<w:color w:val="000000" w:themeColor="text1"/>'
 
