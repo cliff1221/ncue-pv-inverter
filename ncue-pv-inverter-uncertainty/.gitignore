@@ -4,3 +4,4 @@ outputs/*_conv_E.npy
 paper_rev/pg-*.png
 paper_rev/rr-*.png
 paper_rev/rev.txt
+paper_rev/v6.txt
