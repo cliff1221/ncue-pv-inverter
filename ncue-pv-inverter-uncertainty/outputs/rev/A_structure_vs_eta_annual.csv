@@ -1,0 +1,11 @@
+group,case,E_MWh,d_pct
+ref,"PVWatts, eta_nom = datasheet peak (PVWatts-DS, ref.)",195.20946461622754,0.0
+same eta 0.96,constant eta = 0.96,190.89326505555061,-2.2110606005515065
+same eta 0.96,PVWatts eta_nom = 0.96,190.16381566029338,-2.5847358199837633
+same eta 0.98,constant eta = 0.98,194.87020807754126,-0.173791029729653
+same eta 0.98,PVWatts eta_nom = 0.98,194.1631163463353,-0.5360130831511212
+same eta 0.985,constant eta = 0.985,195.8644438330389,0.3355263629758021
+same eta 0.985,PVWatts eta_nom = 0.985,195.16272197797875,-0.023944862684144308
+same peak,constant eta = datasheet peak,195.9109484086993,0.3593492732797854
+same peak,"PVWatts, peak of curve = datasheet peak",194.6902738278092,-0.2659659916792734
+efficiency sweep,PVWatts eta_nom = 0.97,192.163641635208,-1.560284480574492
