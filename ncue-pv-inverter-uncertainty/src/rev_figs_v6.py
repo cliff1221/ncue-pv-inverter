@@ -120,15 +120,36 @@ Dc = pd.read_csv("outputs/rev/D_counters.csv")
 labs = {"2026-10-17": "17 Oct 2026", "2026-10-18": "18 Oct 2026", "2026-02-10": "10 Feb 2026", "2025-12-21": "21 Dec 2025", "2025-08-07": "7 Aug 2025"}
 rows = [(labs[r.date], r.ratio, BL) for r in Cm.itertuples()]
 rows += [(f"{r.inverter} 50 kW, 3.5 yr", r.counter_over_model_same_period, GR) for r in Dc.itertuples()]
-fig, ax = plt.subplots(figsize=(3.3, 1.75))
-yy = np.r_[np.arange(5)[::-1] + 2.6, np.arange(2)[::-1]]
+rows += [("right 30 kW, 3.5 yr", np.nan, GY)]
+fig, ax = plt.subplots(figsize=(3.3, 1.95))
+yy = np.r_[np.arange(5)[::-1] + 3.6, np.arange(3)[::-1]]
 for yi, (l, v, c) in zip(yy, rows):
+    if np.isnan(v):
+        ax.text(0.615, yi, "counter faulty (3.6 GWh after 497,827 h), not used", va="center", fontsize=5.8, color="0.35", style="italic")
+        continue
     ax.barh(yi, v, color=c, height=0.62); ax.text(v + 0.01, yi, f"{v:.2f}", va="center", fontsize=5.9)
 ax.axvline(1.0, color="0.2", lw=0.7)
 ax.set_yticks(yy); ax.set_yticklabels([r[0] for r in rows], fontsize=6.2)
 ax.set_xlim(0.6, 1.12); ax.set_xlabel("measured / modeled energy")
 ax.text(0.61, yy[0] + 0.55, "clear-day records (recorder, hourly)", fontsize=5.8, color=BL, va="bottom")
-ax.text(0.61, yy[-2] + 0.55, "lifetime inverter counters", fontsize=5.8, color=GR, va="bottom")
+ax.text(0.61, yy[-3] + 0.55, "lifetime inverter counters", fontsize=5.8, color=GR, va="bottom")
 ax.set_ylim(-0.6, yy[0] + 1.3)
 plt.tight_layout(pad=0.2); plt.savefig(OUT + "fig_longterm.png", dpi=450); plt.close()
 print("ok")
+
+# ------------------------------------------------------------------ OAT, single larger panel
+fig, a1 = plt.subplots(figsize=(3.3, 2.3))
+y = np.arange(len(order))[::-1]
+for yi, f in zip(y, order):
+    g = O[O.faktor == f].selisih_persen
+    a1.barh(yi, g.min(), color=OR, height=0.62, label="setting giving lower energy" if f == order[0] else None)
+    a1.barh(yi, g.max(), color=BL, height=0.62, label="setting giving higher energy" if f == order[0] else None)
+    a1.text(g.min() - 0.25, yi, f"{g.min():+.1f}", va="center", ha="right", fontsize=5.8, color="0.3") if g.min() < -0.05 else None
+    a1.text(g.max() + 0.25, yi, f"{g.max():+.1f}", va="center", ha="left", fontsize=5.8, color="0.3") if g.max() > 0.05 else None
+    a1.text(14.3, yi, f"{fin.loc[f, 'ST']:.3f}", va="center", ha="right", fontsize=6.2)
+a1.axvline(0, color="0.2", lw=0.5)
+a1.set_yticks(y); a1.set_yticklabels([name[f] for f in order], fontsize=6.6)
+a1.set_xlim(-7.5, 14.5); a1.set_xlabel("Change in annual AC energy vs. baseline (%)")
+a1.text(14.3, len(order) - 0.3, "$S_T$", fontsize=6.6, ha="right")
+a1.legend(frameon=False, fontsize=6, loc="lower right", bbox_to_anchor=(0.86, 0.0))
+plt.tight_layout(pad=0.2); plt.savefig(OUT + "fig_oat.png", dpi=450); plt.close()
