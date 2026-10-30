@@ -1,0 +1,6 @@
+__pycache__/
+*.log
+outputs/*_conv_E.npy
+paper_rev/pg-*.png
+paper_rev/rr-*.png
+paper_rev/rev.txt
