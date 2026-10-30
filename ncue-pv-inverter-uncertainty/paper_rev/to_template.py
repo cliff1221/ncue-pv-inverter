@@ -169,5 +169,11 @@ for el in src_kids[start:]:
         keep = text.rstrip().endswith((":", "ratio", "is", "[3],"))
         append_xml(ppr(jc="both", ind=ind, keep=keep) + runs_from(p, sz=20))
 
+# paper number in the header (final paper number from CSME, 30 Oct 2026)
+for sec in doc.sections:
+    for hp in sec.header.paragraphs:
+        for r in hp.runs:
+            if "CA01-1234" in r.text:
+                r.text = r.text.replace("CA01-1234", "A10-006")
 doc.save(OUT)
 print("saved", OUT)
